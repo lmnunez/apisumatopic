@@ -87,7 +87,29 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 10,),
 
             ElevatedButton(
-                onPressed: _sumar,
+                onPressed: () {
+                  if (valor1.value.text != '' && valor2.value.text != '') {
+                    _sumar();
+                  } else{
+
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context){
+                          return AlertDialog(
+                            title: Text('Error'),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: [
+                                  Text('faltan datos'),
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                    );
+                  }
+                },
                 child: Text("Sumar")
             ),
             SizedBox(height: 10,),
@@ -104,5 +126,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
 
+
+}
